@@ -1,0 +1,127 @@
+@mixin display( $option ) {
+  -webkit-display: $option;
+  -moz-display: $option;
+  -o-display: $option;
+  -ms-display: $option;
+  display: $option;
+}
+
+@mixin justify-content( $option ) {
+  -webkit-justify-content: $option;
+  -moz-justify-content: $option;
+  -o-justify-content: $option;
+  -ms-justify-content: $option;
+  justify-content: $option;
+}
+
+@mixin align-items( $option ) {
+  -webkit-align-items: $option;
+  -moz-align-items: $option;
+  -o-align-items: $option;
+  -ms-align-items: $option;
+  align-items: $option;
+}
+
+@mixin flex-direction( $option ) {
+  -webkit-flex-direction: $option;
+  -moz-flex-direction: $option;
+  -o-flex-direction: $option;
+  -ms-flex-direction: $option;
+  flex-direction: $option;
+}
+
+@mixin grid-gap( $option ) {
+  -webkit-grid-gap: $option;
+  -moz-grid-gap: $option;
+  -o-grid-gap: $option;
+  -ms-grid-gap: $option;
+  grid-gap: $option;
+}
+
+@mixin transition( $option ) {
+  -webkit-transition: $option;
+  -moz-transition: $option;
+  -o-transition: $option;
+  -ms-transition: $option;
+  transition: $option;
+}
+
+@mixin transform($option) {
+  -webkit-transform: $option;
+  -moz-transform: $option;
+  -o-transform: $option;
+  -ms-transform: $option;
+  transform: $option;
+}
+
+@mixin grid-row-gap( $option ) {
+  -webkit-grid-row-gap: $option;
+  -moz-grid-row-gap: $option;
+  -o-grid-row-gap: $option;
+  -ms-grid-row-gap: $option;
+  grid-row-gap: $option;
+}
+
+@mixin grid-template-rows( $option ) {
+  -webkit-grid-template-rows: $option;
+  -moz-grid-template-rows: $option;
+  -o-grid-template-rows: $option;
+  -ms-grid-template-rows: $option;
+  grid-template-rows: $option;
+}
+
+@mixin grid-template-columns( $option ) {
+  -webkit-grid-template-columns: $option;
+  -moz-grid-template-columns: $option;
+  -o-grid-template-columns: $option;
+  -ms-grid-template-columns: $option;
+  grid-template-columns: $option;
+}
+
+@mixin float( $option ) {
+  -webkit-float: $option;
+  -moz-float: $option;
+  -o-float: $option;
+  -ms-float: $option;
+  float: $option;
+}
+
+@mixin grid-column-gap( $option ) {
+  -webkit-grid-column-gap: $option;
+  -moz-grid-column-gap: $option;
+  -o-grid-column-gap: $option;
+  -ms-grid-column-gap: $option;
+  grid-column-gap: $option;
+}
+
+@mixin position( $option ) {
+  -webkit-position: $option;
+  -moz-position: $option;
+  -o-position: $option;
+  -ms-position: $option;
+  position: $option;
+}
+
+@mixin scrollbar-width( $option ) {
+  -webkit-scrollbar-width: $option;
+  -moz-scrollbar-widthn: $option;
+  -o-scrollbar-width: $option;
+  -ms-scrollbar-width: $option;
+  scrollbar-width: $option;
+}
+
+@mixin overflow-style( $option ) {
+  -webkit-overflow-style: $option;
+  -moz-overflow-style: $option;
+  -o-overflow-style: $option;
+  -ms-overflow-style: $option;
+  overflow-style: $option;
+}
+
+@mixin overflow( $option ) {
+  -webkit-overflowe: $option;
+  -moz-overflow: $option;
+  -o-overflow: $option;
+  -ms-overflowe: $option;
+  overflow: $option;
+}

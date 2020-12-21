@@ -1,0 +1,40 @@
+@import 'recourses/styles/mixins.scss';
+
+.authWrapLogo {
+  width: 100%;
+  padding-left: 30px;
+  @include display(flex);
+  @include align-items(center);
+  @include justify-content(center);
+
+  margin-bottom: 64px;
+}
+
+.authTitle {
+  font-family: Montserrat;
+  font-style: normal;
+  font-weight: normal;
+  text-align: center;
+  font-size: 1.5rem;
+  margin-bottom: 32px;
+}
+
+.authWrap {
+  width: 100vw;
+  height: 100vh;
+  @include display(flex);
+  @include align-items(center);
+  @include justify-content(center);
+  background-color: #e8e8e8;
+}
+
+.authForm {
+  width: 350px;
+  padding: 16px 8px;
+  margin-bottom: 25vh;
+}
+
+.authFields {
+  @include display(grid);
+  @include grid-row-gap(32px)
+}

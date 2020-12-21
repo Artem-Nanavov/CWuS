@@ -1,0 +1,1 @@
+{"version":3,"sources":["webpack:///./src/App.css"],"names":[],"mappings":";AAAA;AACA;AACA;AACA,C","file":"main.css","sourcesContent":["h1 {\n    color: #27aedb;\n    text-align: center;\n}"],"sourceRoot":""}
