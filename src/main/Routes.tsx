@@ -1,11 +1,18 @@
 import React from 'react';
 import {hot} from 'react-hot-loader/root';
 import {compose} from 'redux';
-import {Route, Switch} from 'react-router-dom';
-import Authorization from 'pages/Authorization/Authorization';
+import {Redirect, Route, Switch} from 'react-router-dom';
+import Authorization from 'pages/Authorization/AuthContainer';
+import Chat from 'pages/Chat/Chat';
 
 const Routes = () => (
   <Switch>
+		<Route path="/" exact>
+			<Redirect to="/chat" />
+		</Route>
+		<Route path="/chat" exact>
+			<Chat/>
+		</Route>
 		<Route path="/auth" exact>
 			<Authorization />
 		</Route>

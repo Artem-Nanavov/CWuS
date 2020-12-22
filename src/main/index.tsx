@@ -11,6 +11,7 @@ import {composeWithDevTools} from 'redux-devtools-extension';
 import {StateType} from 'typesafe-actions';
 import {batchDispatchMiddleware, enableBatching} from 'redux-batched-actions';
 import rootSaga from './rootSaga';
+import initializeAxios from 'library/utils/fetch';
 
 import './index.scss';
 
@@ -31,6 +32,12 @@ export const store = createStore(
 		),
 	),
 );
+
+export const dispatchSomething = (action: any) => {
+	store.dispatch(action);
+};
+
+export const fetches = () => initializeAxios(store.getState() as RootState, dispatchSomething);
 
 sagaMiddleware.run(rootSaga);
 

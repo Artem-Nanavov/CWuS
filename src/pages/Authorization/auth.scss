@@ -19,6 +19,23 @@
   margin-bottom: 32px;
 }
 
+.authLink {
+  font-family: Montserrat;
+  font-style: normal;
+  font-weight: normal;
+  text-align: center;
+  font-size: 12px;
+  margin-top: -16px;
+  cursor: pointer;
+  text-decoration: underline;
+}
+
+.nameFields {
+  @include display(grid);
+  @include grid-column-gap(16px);
+  @include grid-template-columns(1fr 1fr);
+}
+
 .authWrap {
   width: 100vw;
   height: 100vh;
