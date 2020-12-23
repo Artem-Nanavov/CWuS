@@ -1,20 +1,20 @@
 import {
-	takeLatest, select,
+	takeLatest, call, put,
 } from 'redux-saga/effects';
-import {RootState} from 'main';
-import {getLocalRefreshTokenSaga} from 'pages/Authorization/saga';
+import {fetches} from 'main';
 import userActionTypes from '../constants/user';
+import { push } from 'connected-react-router';
 
-function* requestUserSaga() {
-	// yield put(setGlobalLoading(true));
+function* requestLogoutUser() {
+	try {
+		yield call(fetches().fetchUser.post, 'logout');
 
-	yield getLocalRefreshTokenSaga();
-
-	const refreshToken = yield select((state: RootState) => state.auth.refreshToken);
-
-	// yield put(setGlobalLoading(false));
+		yield put(push('/auth'));
+	} catch (e) {
+		console.error('error', e);
+	}
 }
 
 export default function* watchCommonLayout() {
-	yield takeLatest(userActionTypes.REQUEST_USER_SAGA, requestUserSaga);
+	yield takeLatest(userActionTypes.LOGOUT, requestLogoutUser);
 }

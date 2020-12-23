@@ -10,24 +10,9 @@ import * as authorizationActions from './actions';
 import authorizationActionTypes from './constants';
 import {getAccessToken, requestLogin, requestReg} from './api';
 
-export function* getLocalRefreshTokenSaga() {
-	try {
-    const refreshToken = getRefreshTokenFromLS() || '';
-    
-		if (refreshToken !== '') {
-			yield put(authorizationActions.setRefreshToken(refreshToken));
-		} else {
-			throw new Error('There no any token in local storage...');
-		}
-	} catch (e) {
-    console.error('e', e);
-	}
-}
-
 export function* getAccessTokenSaga() {
 	try {
-		const refreshToken = yield select((_state: RootState) => _state.auth.refreshToken);
-    const access = yield call(getAccessToken, refreshToken);
+    const access = yield call(getAccessToken);
     
 		yield call(authorizationActions.setAccessToken, access.data.access);
 	} catch (e) {
@@ -49,7 +34,7 @@ function* authenticateWithLoginAndPasswordSaga(
 		yield call(initializeAxios, state, dispatchSomething);
 		yield call(setRefreshTokenToLS, res.data.refresh);
 		// yield put(userAction.requestUserSaga());
-		// yield put(userAction.login());
+		yield put(userAction.login());
 		yield put(push('/chat'));
 	} catch (e) {
     console.error('e', e);
@@ -73,7 +58,7 @@ function* regWithDataSaga(
 		yield call(initializeAxios, state, dispatchSomething);
 		yield call(setRefreshTokenToLS, res.data.refresh);
 		// yield put(userAction.requestUserSaga());
-		// yield put(userAction.login());
+		yield put(userAction.login());
 		yield put(push('/chat'));
 	} catch (e) {
     console.error('e', e);
@@ -85,6 +70,5 @@ function* regWithDataSaga(
 
 export default function* watchEntities() {
 	yield takeLatest(authorizationActionTypes.REG_WITH_DATA_SAGA, regWithDataSaga);
-	yield takeLatest(authorizationActionTypes.GET_LOCAL_REFRESH_TOKEN_SAGA, getLocalRefreshTokenSaga);
 	yield takeLatest(authorizationActionTypes.AUTH_WITH_LOGIN_AND_PASSWORD_SAGA,authenticateWithLoginAndPasswordSaga);
 }

@@ -56,18 +56,20 @@ const initializeAxios = (store: RootState, dispatch: (action: any) => void) => {
 				if (isRefreshing) {
 					return new Promise<AxiosPromise>((resolve, reject) => {
 						failedQueue.push({resolve, reject});
-					}).then((token) => {
-						originalRequest.headers.Authorization = token;
+					})
+						.then((token) => {
+							originalRequest.headers.Authorization = token;
 
-						return axios(originalRequest);
-					}).catch((err) => Promise.reject(err));
+							return axios(originalRequest);
+						})
+						.catch((err) => Promise.reject(err));
 				}
 
 				originalRequest._retry = true;
 				isRefreshing = true;
 
 				try {
-					const ref = await nonAuthFetch.post('auth/refresh-tokens', {
+					const ref = await nonAuthFetch.post('user/refresh-tokens', {
 						refresh: refreshToken,
 					});
 
@@ -77,22 +79,19 @@ const initializeAxios = (store: RootState, dispatch: (action: any) => void) => {
 					const resp = axios({
 						...e.config,
 						headers: {
-							...exports.config.headers,
+							...e.config.headers,
 							Authorization: `${ref.data.access}`,
 						},
 					});
-
+					
 					processQueue(null, `${ref.data.access}`);
 
 					return Promise.resolve(resp);
-				} catch {
-          console.error('e', e);
-          
+				} catch {          
           processQueue(e, null);
           
 					if (e.response.status === 401) {
             console.error('Не получилось обновить access_token - Ваш рефреш токен протух', 'error')
-						removeTokens();
 						dispatch(logout());
 					}
 				} finally {
@@ -107,17 +106,19 @@ const initializeAxios = (store: RootState, dispatch: (action: any) => void) => {
 	const requestTypes = (sectionUrl: string) => ({
 		get: (url: string, config?: any) => fetch.get(`${sectionUrl}${url}`, config),
 
-		post: (url: string, config: string) => fetch.post(`${sectionUrl}${url}`, config),
+		post: (url: string, config?: string) => fetch.post(`${sectionUrl}${url}`, config),
 
 		delete: (url: string) => fetch.delete(`${sectionUrl}${url}`),
 
-		patch: (url: string, config: string) => fetch.patch(`${sectionUrl}${url}`, config),
+		patch: (url: string, config?: string) => fetch.patch(`${sectionUrl}${url}`, config),
 	});
 
-	const fetchProfile = requestTypes('user');
+	const fetchUser = requestTypes('http://localhost:8000/user/');
+	const fetchIsAuth = requestTypes('http://localhost:8000/');
 
 	return {
-		fetchProfile,
+		fetchUser,
+		fetchIsAuth,
 		nonAuthFetch,
 	};
 };

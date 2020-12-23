@@ -3,7 +3,7 @@ import {hot} from 'react-hot-loader/root';
 import {compose} from 'redux';
 import {Redirect, Route, Switch} from 'react-router-dom';
 import Authorization from 'pages/Authorization/AuthContainer';
-import Chat from 'pages/Chat/Chat';
+import Chat from 'pages/Chat/ChatContainer';
 
 const Routes = () => (
   <Switch>

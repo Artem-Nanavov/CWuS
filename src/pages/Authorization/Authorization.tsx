@@ -131,6 +131,7 @@ const Authorization = ({
             size="small"
             fullWidth
             label="Пароль"
+            type="password"
             variant="outlined"
             onKeyDown={(e: React.KeyboardEvent<HTMLInputElement>) => {
               if (e.keyCode === 13) authHandler();

@@ -18,13 +18,11 @@ const authFetch = (data: IAuthData | IDataReg) => axios.create({
 		'Content-Type': 'application/json',
 		Authorization: JSON.stringify(data),
 	},
+	withCredentials: true,
 });
 
 export const requestLogin = (data: IAuthData) => authFetch(data).post('/login');
 
 export const requestReg = (data: IDataReg) => authFetch(data).post('/reg');
 
-export const getAccessToken = (refreshToken: string) =>	fetches()
-	.nonAuthFetch.post('http://localhost:8000/auth/refresh-tokens', {
-		refresh: refreshToken,
-	});
+export const getAccessToken = () =>	fetches().nonAuthFetch.post('http://localhost:8000/auth/refresh-tokens');
