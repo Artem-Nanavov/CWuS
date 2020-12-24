@@ -114,11 +114,9 @@ const initializeAxios = (store: RootState, dispatch: (action: any) => void) => {
 	});
 
 	const fetchUser = requestTypes('http://localhost:8000/user/');
-	const fetchIsAuth = requestTypes('http://localhost:8000/');
 
 	return {
 		fetchUser,
-		fetchIsAuth,
 		nonAuthFetch,
 	};
 };

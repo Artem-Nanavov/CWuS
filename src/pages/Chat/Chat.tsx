@@ -11,7 +11,7 @@ const Chat = ({
   access,
 }: IChat) => {
   useEffect(() => {
-    fetches().fetchIsAuth.post('isAuth');
+    fetches().fetchUser.get('me');
   }, []);
 
   const socket = io('http://localhost:8000', {
