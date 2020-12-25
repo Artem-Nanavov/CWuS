@@ -13,6 +13,9 @@
 
 .chatBody {
   overflow: auto;
+  @include display(flex);
+  @include flex-direction(column);
+  @include justify-content(flex-end);
 }
 
 .chatMsg {

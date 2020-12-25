@@ -1,55 +1,61 @@
 import { store } from 'main/index';
 import {useState, useEffect} from 'react';
 import { io, Socket } from 'socket.io-client';
+import { IMsg } from '../Chat';
 
 const useSocket = () => {
   // @ts-ignore
   const access = store.getState().auth.accessToken;
 
   const [isConnected, setIsConnected] = useState(false);
-  const [socket, setSocket] = useState<Socket | null>(null);
-  const [msgs, setMsgs] = useState([]);
+  const [msgs, setMsgs] = useState<IMsg[]>([]);
+  const [isLoading, setIsLoading] = useState(true);
 
   console.log('isConnected', isConnected);
 
+  const socket = io('http://localhost:8000', {
+    extraHeaders: {
+      Authorization: `${access}`,
+    },
+  });
+
   useEffect(() => {
-    const _socket = io('http://localhost:8000', {
-      extraHeaders: {
-        Authorization: `${access}`,
-      },
-    });
+    socket.on('connect', () => setIsConnected(true));
+    socket.on('disconnect', () => setIsConnected(false));
+  }, []);
 
-    setSocket(_socket);
-
-    _socket.on("connect", () => setIsConnected(true));
-    _socket.on("disconnect", () => setIsConnected(false));
-  
-    _socket.on('connect_error', (err: any) => {
-      console.log(err.message);
-    });
-  
-    _socket.on('new message', (msg: any) => {
-      console.log('msg', msg)
-    });
-  
-    _socket.on('user join', (username: string) => {
+  useEffect(() => {
+    socket.on('user join', (username: string) => {
       console.log('user join', username);
     });
   }, []);
 
-  const joinUser = (username: string) => {
-    if (socket && isConnected) {
-      socket.emit('new user', username);
-    }
-  };
+  useEffect(() => {
+    socket.on('new message', (msg: IMsg) => {
+      console.log('new message', msg);
+      setMsgs(preState => [...preState, msg]);
+    });
+  }, []);
 
-  const sendMsg = (msg: string) => {
-    // socket.emit('new message', JSON.stringify({text: msg}));
-  };
+  useEffect(() => {
+    socket.on('connect to chat', (msgs: IMsg[]) => {
+      setMsgs(msgs);
+      setIsLoading(false);
+    });
+  }, []);
+
+  const sendMsg = (
+    msg: string,
+    user_id: string,
+    username: string,
+  ) => {
+    socket.emit('new message', {text: msg, owner_id: user_id, username})
+  }
 
   return {
+    msgs,
     sendMsg,
-    joinUser,
+    isLoading,
     isConnected,
   };
 };
