@@ -1,7 +1,7 @@
 import React, {
   useState, useEffect, useCallback
 } from 'react';
-import Logo from 'recourses/icons/Logo';
+import Logo from 'resources/icons/Logo';
 import styles from './auth.scss';
 import TextField from '@material-ui/core/TextField';
 import Button from '@material-ui/core/Button';

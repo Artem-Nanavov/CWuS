@@ -97,7 +97,7 @@ module.exports = {
 			pages: path.resolve(__dirname, '../src/pages'),
 			library: path.resolve(__dirname, '../src/library'),
 			typings: path.resolve(__dirname, '../src/typings'),
-			recourses: path.resolve(__dirname, '../src/recourses'),
+			resources: path.resolve(__dirname, '../src/resources'),
 		}
 	},
 	optimization: optimization(),

@@ -1,0 +1,20 @@
+@import 'resources/styles/mixins.scss';
+
+.chatContainer {
+  width: 100vw;
+  height: 100vh;
+  padding: 8px 8px;
+
+  @include display(grid);
+  @include grid-template-rows(1fr 40px);
+  @include grid-row-gap(16px);
+  @include overflow(auto);
+}
+
+.chatBody {
+  overflow: auto;
+}
+
+.chatMsg {
+  
+}

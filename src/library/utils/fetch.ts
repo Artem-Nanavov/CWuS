@@ -2,7 +2,6 @@ import axios, {AxiosRequestConfig, AxiosPromise} from 'axios';
 import {setAccessToken} from 'pages/Authorization/actions';
 import {RootState} from 'main';
 import {login, logout} from 'library/common/actions/user';
-import {removeTokens} from './token';
 
 interface IFailedQueue {
 	resolve: (payload: any) => void;

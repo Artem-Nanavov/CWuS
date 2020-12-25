@@ -70,5 +70,5 @@ function* regWithDataSaga(
 
 export default function* watchEntities() {
 	yield takeLatest(authorizationActionTypes.REG_WITH_DATA_SAGA, regWithDataSaga);
-	yield takeLatest(authorizationActionTypes.AUTH_WITH_LOGIN_AND_PASSWORD_SAGA,authenticateWithLoginAndPasswordSaga);
+	yield takeLatest(authorizationActionTypes.AUTH_WITH_LOGIN_AND_PASSWORD_SAGA, authenticateWithLoginAndPasswordSaga);
 }
